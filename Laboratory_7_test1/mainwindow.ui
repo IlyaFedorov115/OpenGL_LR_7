@@ -34,7 +34,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#0000ff;&quot;&gt;Источник света 0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#0000ff;&quot;&gt;Источник света&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_hightL0">
@@ -165,6 +165,44 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>140</y>
+      <width>121</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <item>
+     <property name="text">
+      <string>direct_light</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>point_light_1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>point_light_2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>projector_1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>projector_2</string>
+     </property>
+    </item>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -200,6 +238,7 @@
     <slot>setRotateY(bool)</slot>
     <slot>setRotateZ(bool)</slot>
     <slot>setIsDrawField(bool)</slot>
+    <slot>setTypeLight(QString)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -298,6 +337,22 @@
     <hint type="destinationlabel">
      <x>591</x>
      <y>415</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>myWidget</receiver>
+   <slot>setTypeLight(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>831</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>300</y>
     </hint>
    </hints>
   </connection>
