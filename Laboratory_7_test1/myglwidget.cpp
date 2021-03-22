@@ -71,66 +71,76 @@ void MyGLWidget::resizeGL(int w, int h){
 }
 
 
+void offLight(){
+ glDisable(GL_LIGHT0); glDisable(GL_LIGHT1); glDisable(GL_LIGHT2); glDisable(GL_LIGHT3); glDisable(GL_LIGHT4); glDisable(GL_LIGHT5);
+}
+
 void MyGLWidget::useLight()
 {
     GLfloat light1_diffuse[] = {0.4, 0.7, 0.2};
     GLfloat light1_position[] = {1.0, 1.0, hightLight0, 1.0};
+    GLfloat white_light[]={1.0,1.0,1.0,1.0};
 
-    //glDisable(currentLight);
-
-    glDisable(GL_LIGHT0);
-    glEnable(GL_LIGHT0);
     switch (lightType) {
     case LIGHT_TYPE::SOLAR:
-        //currentLight = GL_LIGHT0;
-        //glEnable(GL_LIGHT0);
+ glDisable(GL_LIGHT1); glDisable(GL_LIGHT2); glDisable(GL_LIGHT3); glDisable(GL_LIGHT4); glDisable(GL_LIGHT5);
+        glEnable(GL_LIGHT0);
         glLightfv(GL_LIGHT0, GL_POSITION, lightPosition0);
 
         break;
     case LIGHT_TYPE::DOT_LIGHT_1:
-        //currentLight = GL_LIGHT1;
-        //glLightfv(GL_LIGHT0, GL_DIFFUSE, light1_diffuse);
-        //glEnable(GL_LIGHT1);
-        glLightfv(GL_LIGHT0, GL_POSITION, light1_position);
+ glDisable(GL_LIGHT0); glDisable(GL_LIGHT2); glDisable(GL_LIGHT3); glDisable(GL_LIGHT4); glDisable(GL_LIGHT5);
+        glEnable(GL_LIGHT1);
+        glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+
+                glLightfv(GL_LIGHT1,GL_DIFFUSE,white_light);     glLightfv(GL_LIGHT1,GL_SPECULAR,white_light);
         currentLight = GL_LIGHT1;
         break;
 
     case LIGHT_TYPE::DOT_LIGHT_2: {
-
-        //glEnable(GL_LIGHT2);
+ glDisable(GL_LIGHT0); glDisable(GL_LIGHT1); glDisable(GL_LIGHT3); glDisable(GL_LIGHT4); glDisable(GL_LIGHT5);
+        glEnable(GL_LIGHT2);
         GLfloat light2_diffuse[] = {0.4, 0.7, 0.2};
         GLfloat light2_position[] = {1.0, 1.0, hightLight0, 1.0};
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, light2_diffuse);
-        glLightfv(GL_LIGHT0, GL_POSITION, light2_position);
-        glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.0);
-        glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.2);
-        glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.4);
+        //glLightfv(GL_LIGHT0, GL_DIFFUSE, light2_diffuse);
+        glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
+        glLightf(GL_LIGHT2, GL_CONSTANT_ATTENUATION, 0.0);
+        glLightf(GL_LIGHT2, GL_LINEAR_ATTENUATION, 0.2);
+        glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, 0.4);
+
+                glLightfv(GL_LIGHT2,GL_DIFFUSE,white_light);     glLightfv(GL_LIGHT2,GL_SPECULAR,white_light);
         break;
         //currentLight = GL_LIGHT2;
     }
     case LIGHT_TYPE::PROJECTOR_1: {
-        //glEnable(GL_LIGHT3);
+         glDisable(GL_LIGHT0); glDisable(GL_LIGHT1); glDisable(GL_LIGHT2); glDisable(GL_LIGHT4); glDisable(GL_LIGHT5);
+        glEnable(GL_LIGHT3);
         GLfloat light3_diffuse[] = {0.4, 0.7, 0.2};
-        GLfloat light3_position[] = {0.5, 0.5, hightLight0*1.1, 1.0};
+        GLfloat light3_position[] = {0.5, 0.5, hightLight0*0.8, 1.0};
         GLfloat light3_spot_direction[] = {0.0, 0.0, -1.0};
         //glLightfv(GL_LIGHT0, GL_DIFFUSE, light3_diffuse);
-        glLightfv(GL_LIGHT0, GL_POSITION, light3_position);
-        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 30);
-        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light3_spot_direction);
+        glLightfv(GL_LIGHT3, GL_POSITION, light3_position);
+        glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, 30);
+        glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, light3_spot_direction);
+
+glLightfv(GL_LIGHT3,GL_DIFFUSE,white_light);     glLightfv(GL_LIGHT3,GL_SPECULAR,white_light);
         break;
         //currentLight = GL_LIGHT3;
     }
     case LIGHT_TYPE::PROJECTOR_2: {
-
+glDisable(GL_LIGHT0); glDisable(GL_LIGHT1); glDisable(GL_LIGHT2); glDisable(GL_LIGHT3);
+        glEnable(GL_LIGHT4);
         GLfloat light4_diffuse[] = {0.4, 0.7, 0.2};
         GLfloat light4_position[] = {2.0, 2.0, hightLight0, 1.0};
         GLfloat light4_spot_direction[] = {0.0, 0.0, -1.0};
 
         //glEnable(GL_LIGHT4);
-        glLightfv(GL_LIGHT0, GL_POSITION, light4_position);
-        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 30);
-        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light4_spot_direction);
-        glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 15.0);
+        glLightfv(GL_LIGHT4, GL_POSITION, light4_position);
+        glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, 30);
+        glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, light4_spot_direction);
+        glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, 15.0);
+
+glLightfv(GL_LIGHT4,GL_DIFFUSE,white_light);     glLightfv(GL_LIGHT4,GL_SPECULAR,white_light);
         break;
         //currentLight = GL_LIGHT4;
     }
@@ -183,8 +193,12 @@ void MyGLWidget::drawScene()
         glColor3f(0,1,0);
         if (isDrawField) drawField();
         if (isDrawCube) drawCube();
-    glPopMatrix();
 
+        glTranslatef(-1.6,0.2,0.5);
+        if (isDrawCube) drawCube();
+
+
+    glPopMatrix();
 
 }
 
